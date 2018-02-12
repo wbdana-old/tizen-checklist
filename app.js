@@ -21,8 +21,8 @@ window.onload = function () {
 	});
 	
 	var listHeader = document.querySelector("#list-header");
-	var listBody = document.querySelector("#list-item");
-	var checklist = document.querySelector("#checklist");
+//	var listBody = document.querySelector("#list-item");
+//	var checklist = document.querySelector("#checklist");
 	
 	var sampleItems = ["cheddar", "beef"];
 	
@@ -45,6 +45,23 @@ window.onload = function () {
 		
 		checklist.appendChild(li);
 	}
+	
+//	function onRotarydetent(event) {
+//		var direction = event.detail.direction,
+//			uiScroller = document.querySelector('.ui-scroller') //,
+////			scrollPos = uiScroller.scrollTop();
+//		
+//		console.debug("onRotarydetent: " + direction);
+//		console.log(uiScroller)
+//		
+//		if (direction === "CW") {
+////			uiScroller.scrollTop(scrollPos + 100);
+//		} else {
+////			uiScroller.scrollTop(scrollPos - 100);
+//		}
+//	}
+//	
+//	document.addEventListener('rotarydetent', onRotarydetent);
 	
 	listHeader.addEventListener("click", function() {
 		sampleItems.forEach((sampleItem) => {

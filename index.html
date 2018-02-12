@@ -11,27 +11,74 @@
 
 <body>
 	
-	<div class="List" id="list-header">
-		<header class="ui-header">
-			<h2 class="ui-title">Checklist</h2>
-		</header>
-		<div class="ui-content content-padding" id="list-item">
-			<ul class="checklist">
-				
-			</ul>
-			<input type="checkbox" name="checkbox" value="value" id="checkbox" />
-			<input type="text" name="add-item" value="value" id="checkbox" />
+	<div class="ui-page ui-page-active" id="checklist-main"> <!--  Main Page -->
+		<div class="ui-content ui-listview">
+		
+			<header class="ui-header" id="list-header">
+				<h2 class="ui-title">Checklist</h2>
+			</header>
 			
-		</div>
+			<div class="ui-content content-padding" id="checklist">
+				<ul class="checklist ui-scroller">
+					
+				</ul>
+				<!--  <input type="checkbox" name="checkbox" value="value" id="checkbox" /> 
+				<input type="text" name="add-item" value="value" id="checkbox" /> -->
+			</div>
+			
+			<div class="ui-content content-padding" id="add-item-link">
+				<a href="#add-item">Add Item</a>
+			</div>
+		</div> <!-- End ui-content -->
+	</div> <!--  End checklist-main -->
+	
+	<div class="ui-page" id="add-item">
+		<div class="ui-content">
 		
-		
-		
-	</div>
+			<header class="ui-header">
+				<h2 class="ui-title">Add Item</h2>			
+			</header>
+			
+			<div class="ui-content content-padding" id="add-item-input-div">
+				<input type="text" value="value" id="add-item-input" />
+			</div>
+			
+			<div class="ui-content content-padding" id="add-item-back">
+				<a href="#checklist-main">Back</a>			
+			</div>
+			
+		</div> <!-- End ui-content -->
+	</div> <!-- End add-item page -->
 	
 	
 	<script type="text/javascript" src="lib/tau/wearable/js/tau.min.js"></script>
 	<script src="app.js"></script>
 	<script src="lowBatteryCheck.js"></script>
+	<script>
+			(function(tau) {
+			var page,
+				list,
+				listHelper;
+			
+			/* Check for a circular device */
+			if (tau.support.shape.circle) {
+				document.addEventListener('pagebeforeshow', function(event) {
+					page = event.target;
+					list = page.querySelector('.ui-listview');
+					if (list) {
+						/* Create SnapListView and bind rotary event using tau.helper */
+						
+						listHelper = tau.helper.SnapListStyle.create(list);
+					}
+				});
+				
+				document.addEventListener('pagebeforehide', function (event) {
+					listHelper.destroy();
+				});
+			}
+		}(tau));
+	</script>
+	
 	
 </body>
 
